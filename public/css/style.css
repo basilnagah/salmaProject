@@ -1,0 +1,99 @@
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+}
+
+.gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+* {
+    padding    : 0;
+    margin     : 0;
+    box-sizing : border-box;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.navbar {
+    background-color: #c09048d2;
+
+}
+
+.navbar-brand{
+    font-size: 2rem;
+}
+
+.offcanvas{
+    background-color:#c09048 ;
+}
+.search{
+    background-color: #f4e6e6;
+    color: #c09048;
+}
+.search:hover{
+    background-color: #c09048d2;
+    color           : #f4e6e6;
+    border: 0;
+}
+
+.section_all_products {
+    width: 100%;
+}
+
+.all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products .btn {
+    background-color: #f4e6e6;
+}
+
+.brand {
+    font-size  : 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.cartNumber{
+    font-weight: 900;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+
+.navbar{
+    font-weight: 100;
+}
+.navbar a{
+    font-weight: 100;
+}
+.navbar li{
+    font-weight: 100;
+}
+.navbar ul{
+    font-weight: 100;
+}
+
+
+footer ul{
+    list-style: none;
+
+}
+
+
+

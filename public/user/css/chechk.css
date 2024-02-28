@@ -1,0 +1,139 @@
+* {
+    padding    : 0;
+    margin     : 0;
+    box-sizing : border-box;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    /* font-family: 'Pacifico', cursive; */
+
+    /* background-image: url(../images/salma\ store\ \(2\).png); */
+}
+
+.navbar {
+    background-color: #c09048d2;
+}
+.navbar-brand{
+    font-size: 2rem;
+}
+.offcanvas{
+    background-color:#c09048 ;
+}
+.search{
+    background-color: #f4e6e6;
+    color: #c09048;
+}
+.search:hover{
+    background-color: #c09048d2;
+    color           : #f4e6e6;
+    border          : 0;
+}
+
+.section_all_products {
+    width: 100%;
+}
+
+.all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products .btn {
+    background-color: #f4e6e6;
+}
+
+.brand {
+    font-size  : 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.checkoutpg{
+    width: 100%;
+    height: 100vh;
+    /* background-color: #c6c6c6; */
+}
+.item-img{
+    width: 40px;
+    height: 60px;
+}
+.check{
+    margin: auto;
+    text-align: center;
+}
+
+.persnonal{
+    position: relative;
+    top: 7px;
+}
+.orderButton{
+    position: relative;
+    top: 40px;
+}
+
+.erg{
+    transform: scale(0.7);
+    position: absolute;
+    right: -200px;
+    top: 500px;
+}
+
+@media screen and (max-width:900px) {
+    .erg{
+        transform: scale(0.7);
+        position: static;
+        right: 0;
+        top: 0;
+    }
+
+}
+
+
+
+
+.navbar-toggler {
+    color: #fff !important;
+    background-color: #fff !important;
+}
+/* Raleway fontt */
+
+.navbar-brand{
+    font-family: 'Raleway', sans-serif;
+    margin: auto;
+    position: relative;
+    font-size: 3rem;
+}
+.navbar-brand span{
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: 'Roboto Mono', monospace;
+    /* margin: auto; */
+    position: absolute;
+    font-size: 17px;
+    top: 70%;
+    left: 30%;
+}
+
+
+
+
+.del{
+    width: 500px;
+    margin-right: 20px;
+}
+.navbar{
+    background-color: #000 !important;
+}
+.navbar img{
+    /* display: none; */
+    width: 100px;
+    height: 100px;
+    /* transform: scale(0.3); */
+}
+
+@media screen and (max-width:600px) {
+    .navbar-brand {
+        display: none;
+    }
+
+
+}

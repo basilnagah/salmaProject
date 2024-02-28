@@ -1,0 +1,394 @@
+* {
+    padding    : 0;
+    margin     : 0;
+    box-sizing : border-box;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.navbar {
+    background-color: #c09048d2;
+    position        : fixed;
+    top             : 0;
+    width           : 100%;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+}
+
+.offcanvas {
+    background-color: #c09048;
+}
+
+.search {
+    background-color: #f4e6e6;
+    color           : #c09048;
+}
+
+.search:hover {
+    background-color: #c09048d2;
+    color           : #f4e6e6;
+    border          : 0;
+}
+
+.section_all_products {
+    width: 100%;
+}
+
+.all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products {
+    background-color: #ffffff;
+}
+
+.card-body_all_products .btn {
+    background-color: #f4e6e6;
+}
+
+.brand {
+    font-size  : 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.cartNumber {
+    font-weight: 900;
+    position   : relative;
+    top        : 5px;
+    left       : 5px;
+}
+
+
+
+
+.card {
+    width        : 270px;
+    height       : 400px;
+    margin-bottom: 200px;
+    margin-right : 25px;
+    position     : relative;
+}
+
+.salebtn {
+    position: absolute;
+    right   : 15px;
+    bottom  : -90px;
+}
+
+.card button {
+    position        : absolute;
+    bottom          : -35%;
+    right           : 5%;
+    color           : #f4e6e6;
+    background-color: #c09048d2;
+    font-family     : Arial, Helvetica, sans-serif;
+    font-weight     : 200;
+}
+
+.card button:hover {
+    background-color   : #f4e6e6;
+    color              : #c09048d2;
+    /* border          : 3px solid #c09048d2; */
+
+}
+
+.card a:hover {
+    background-color   : #f4e6e6;
+    color              : #c09048d2;
+    /* border          : 3px solid #c09048d2; */
+
+}
+
+.card img {
+    width     : 100%;
+    transition: all 0.3s;
+}
+
+.card .img2 {
+    position  : absolute;
+    top       : 0;
+    left      : 0;
+    opacity   : 0;
+    transition: all 0.3s;
+}
+
+.card:hover .img2 {
+    opacity: 1;
+}
+
+.card:hover img {
+    opacity: 0;
+}
+
+.card .category {
+    color      : #767676;
+    font-size  : 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin-top : 10px;
+}
+
+.card .product {
+    color      : #111;
+    font-size  : 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.card .price {
+    color      : #a6a6a6;
+    font-size  : 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.card .quantity {
+    color      : #a6a6a6;
+    font-size  : 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+
+
+.footer {
+    background-color: #2f333b;
+    /* position     : fixed; */
+    /* bottom       : 0; */
+    /* margin-top   : 150px; */
+    width           : 100%;
+}
+
+.copyright-text {
+    color: #c09048;
+}
+
+.navbar-brand {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size  : 40px;
+}
+
+.buy {
+    text-decoration: none;
+    color          : #111;
+    /* font-weight : 200; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.selectC {
+    background-color: #c09048d2 !important;
+
+}
+
+
+
+
+
+.chechkout {
+    position: relative;
+    top     : 100px;
+}
+
+
+/* .pag{
+    position: relative;
+    left: 50%;
+    transform: translateX(-25%);
+} */
+
+
+
+
+.byebtn {
+    background-color: #000 !important;
+    color           : #fff !important;
+}
+
+.byebtn a {
+    /* background-color: #000 !important; */
+    color: #fff !important;
+}
+
+.byebtn:hover {
+    background-color: rgb(77, 76, 76) !important;
+    color           : #000 !important;
+}
+
+
+.btnsale {
+    background-color: #c09048;
+    color           : #fff;
+    outline         : 1px solid #c09048;
+    border          : 1px solid #c09048;
+}
+
+.logo {
+    /* transform: scale(0.2); */
+    width    : 200px;
+    position : relative;
+    left     : 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-toggler {
+    color           : #fff !important;
+    background-color: #fff !important;
+}
+
+/* Raleway fontt */
+
+.navbar-brand {
+    font-family: 'Raleway', sans-serif;
+    margin     : auto;
+    position   : relative;
+    font-size  : 3rem;
+}
+
+.navbar-brand span {
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: 'Roboto Mono', monospace;
+    /* margin  : auto; */
+    position   : absolute;
+    font-size  : 17px;
+    top        : 70%;
+    left       : 30%;
+}
+
+.navbar {
+    background-color: #000 !important;
+}
+
+.navbar img {
+    /* display: none; */
+    width       : 100px;
+    height      : 100px;
+    /* transform: scale(0.3); */
+}
+
+
+
+
+.shaan {
+    margin-top: 200px;
+    position  : relative;
+    left      : 50%;
+    /* width: 300px; */
+    transform : translateX(-50%);
+    /* background-color: red; */
+}
+
+.shaan p {
+    width    : 800px;
+    font-size: 18x;
+    position: relative;
+    right: 200px;
+    font-family: 'Cairo', sans-serif;
+}
+.shaan h2{
+    position: relative;
+    left: 250px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+
+@media screen and (max-width:600px) {
+    .navbar-brand {
+        display: none;
+    }
+
+    .shaan {
+        margin-top: 200px;
+        position  : relative;
+        left      : 25%;
+        transform : translateX(-50%);
+    }
+    .shaan p {
+        width    : 450px;
+        height: 250px;
+        font-size: 16px;
+        position: relative;
+        right: 110px;
+    }
+}
+.ergaa {
+    margin-top: 200px;
+    position  : relative;
+    left      : 50%;
+    /* width: 300px; */
+    transform : translateX(-50%);
+    /* background-color: red; */
+}
+
+.ergaa p {
+    width    : 800px;
+    font-size: 18x;
+    position: relative;
+    right: 200px;
+    font-family: 'Cairo', sans-serif;
+}
+.ergaa h2{
+    position: relative;
+    left: 250px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+
+@media screen and (max-width:600px) {
+    .navbar-brand {
+        display: none;
+    }
+
+    .ergaa {
+        margin-top: 200px;
+        position  : relative;
+        left      : 25%;
+        transform : translateX(-50%);
+    }
+    .ergaa p {
+        width    : 450px;
+        height: 250px;
+        font-size: 16px;
+        position: relative;
+        right: 100px;
+    }
+}
+
+footer ul {
+    list-style: none;
+
+}
+
+footer ul li a {
+    /* list-style: none; */
+    text-decoration: none;
+    color          : #000;
+}
+
+.navbar img {
+    /* display: none; */
+    width : 100px;
+    height: 100px;
+}
+
+.footer {
+    /* display:none; */
+    background-color: transparent;
+}
+.footer .enwan{
+    font-size: 20px;
+}
+.footer ul li{
+    display: block;
+}
