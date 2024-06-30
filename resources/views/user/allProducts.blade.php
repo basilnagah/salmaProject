@@ -16,6 +16,11 @@
                             {{ session()->get('addedToCart') }}
                         </p>
                     @endif
+                    @if (session()->has('error'))
+                        <p style="font-size: 16px;" class="alert alert-danger w-50 m-auto mb-4">
+                            {{ session()->get('error') }}
+                        </p>
+                    @endif
                     @if (session()->has('orderStatus'))
                         <p class="alert alert-success w-50 m-auto mb-4">
                             {{ session()->get('orderStatus') }}
@@ -27,9 +32,15 @@
 
                         @foreach ($products as $product)
                             <div class="card ">
-                               <a href="{{ url("productDetails/$product->id") }}"> <img src="{{ asset("storage/$product->image1") }}" alt=""></a>
-                               <a href="{{ url("productDetails/$product->id") }}">  <img class="img2" src="{{ asset("storage/$product->image2") }}" alt=""></a>
-                                <p class="category">{{ $product->category }}</p>
+                               {{-- <a href="{{ url("productDetails/$product->id") }}"> <img src="{{ asset("storage/$product->image1") }}" alt=""></a>
+                               <a href="{{ url("productDetails/$product->id") }}">  <img class="img2" src="{{ asset("storage/$product->image2") }}" alt=""></a> --}}
+                               <a href="{{ url("productDetails/$product->id") }}">  <img src="{{asset($product->image()->first()->filename)}}" alt=""> </a>
+                               {{-- <img class="img2" src="{{asset($product->image()->first()->filename)}}" alt=""> --}}
+                               @if ($product->image()->count() > 1)
+                                   <!-- Display the second image if it exists -->
+                                   <a href="{{ url("productDetails/$product->id") }}">   <img class="img2" src="{{ asset($product->image()->skip(1)->first()->filename) }}" alt=""> </a>
+                               @endif
+                                <p class="category">{{ $product->category->name }}</p>
                                 <p class="product">{{ $product->name }}</p>
                                 @if ($product->salePrice != null)
                                     <div class="btn  btn-success w-25 btnsale">SALE</div>

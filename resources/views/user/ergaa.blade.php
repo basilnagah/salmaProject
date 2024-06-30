@@ -26,14 +26,14 @@ if (Session::has('user')) {
 
 <body>
 
-
-    <nav class="navbar bg-dark bg-body-tertiary fixed-top">
+    @include('user.navbar')
+    {{-- <nav class="navbar bg-dark bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <img src="{{ asset('images/logooo.jpg') }}" width="30px" height="24px" alt="">
             <a class="navbar-brand text-center text-light" href="#">Salma <span>store</span></a>
             {{-- <a class="navbar-brand text-center text-light" href="#"> Store</a> --}}
             {{-- <img class="navbar-brand logo" src=""  alt=""> --}}
-            <button class="navbar-toggler text-light" type="button" data-bs-toggle="offcanvas"
+           {{-- <button class="navbar-toggler text-light" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon text-light"></span>
             </button>
@@ -139,9 +139,15 @@ if (Session::has('user')) {
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="ergaa w-25">
+        <h2 style="text-align: right">{{$ReturnPolicy->title}}</h2>
+        <p style="text-align: right">
+            {{$ReturnPolicy->desc}}
+        <p>
+    </div>
+    {{-- <div class="ergaa w-25">
         <h2 style="text-align: right">:سياسة الاسترجاع</h2>
         <p style="text-align: right">
 
@@ -154,7 +160,7 @@ if (Session::has('user')) {
 
             يمكن استرداد العناصر ذات الأسعار العادية<br> فقط ، وللأسف لا يمكن استرداد أو استبدال العناصر المخفضة.
         <p>
-    </div>
+    </div> --}}
 
 
 

@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phoneNumber',
+        'secondPhoneNumber',
     ];
 
     /**
@@ -42,4 +44,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function order()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
 }

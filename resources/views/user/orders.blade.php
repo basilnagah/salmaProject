@@ -22,155 +22,57 @@ if (Session::has('user')) {
 </head>
 
 <body>
-
-    <nav class="navbar bg-dark bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <img src="{{ asset('images/logooo.jpg') }}" width="30px" height="24px" alt="">
-            <a class="navbar-brand text-center text-light" href="#">Salma <span>store</span></a>
-            {{-- <a class="navbar-brand text-center text-light" href="#"> Store</a> --}}
-            {{-- <img class="navbar-brand logo" src=""  alt=""> --}}
-            <button class="navbar-toggler text-light" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon text-light"></span>
-            </button>
-            <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header ">
-                    <h5 class="offcanvas-title text-light" id="offcanvasNavbarLabel">Salma Store</h5>
-                    <button type="button" class="btn-close text-light" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body"style=color>
-                    <ul class="bg-dark navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active text-light" aria-current="page"
-                                href="{{ url('/') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('userProducts') }}">All Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('skirt') }}">skirt</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('dress') }}">dress</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('swimmingWear') }}">swimming wear</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('blouses') }}">blouses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('sales') }}">sales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('sets') }}">sets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('cardigan') }}">cardigan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('abaya') }}">abaya</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('orders') }}">orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('basic') }}">basic</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('kimono') }}">kimono</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('tunic') }}">tunic</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('scarfs') }}">scarfs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('bags') }}">bags</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link cartword text-light" href="{{ url('cartList') }}">Cart<span
-                                    class="cartNumber">(
-                                    {{ $total }} )</span></a>
-
-                        </li>
-
-
-                        @auth
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('logout') }}">LogOut</a>
-                            </li>
-                        @endauth
-                        @guest
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('login') }}">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('login') }}">Login</a>
-                            </li>
-                        @endguest
-                        <li class="nav-item">
-                            <form class="d-flex selectC" action="{{ url('convertCurrnecy') }}">
-                                <select class="form-select" name="currnecy" id="currnecy">
-                                    <option value="EGP"><a href="{{ url('convertCurrnecy') }}">EGP</a></option>
-                                    <option value="USD"><a href="{{ url('convertCurrnecy') }}">USD</a></option>
-                                    <option value="SAR"><a href="{{ url('convertCurrnecy') }}">SAR</a></option>
-                                </select>
-                                <button class="btn bg-dark text-light">convert</button>
-                            </form>
-                        </li>
-
-                    </ul>
-                    <form class="d-flex mt-3" role="search" action="{{ url('search') }}">
-                        @csrf
-                        <input class="form-control me-2" type="search" name="key" placeholder="Search"
-                            aria-label="Search">
-                        <button class="search  btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('user.navbar')
     <table class="table tableO mt-5 table-bordered table-responsive">
-        <thead class="">
+        <thead>
             <tr>
-                <td scope="col">#</td>
-                <td scope="col">First Name</td>
-                <td scope="col">Last Name</td>
-                <td scope="col">Phone Number</td>
-                <td scope="col">Second Phone Number</td>
-                <td scope="col">adress</td>
-                <td scope="col">city</td>
-                <td scope="col">status</td>
-                <td scope="col">action</td>
+              <th scope="col">#</th>
+              {{-- <th scope="col">name</th> --}}
+              {{-- <th scope="col">Phone number</th> --}}
+              {{-- <th scope="col">Phone number 2</th> --}}
+              <th scope="col">image</th>
+              <th scope="col">Prodduct Name</th>
+              <th scope="col">Product Size</th>
+              <th scope="col">Product color</th>
+              <th scope="col">Order Status</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Second Phone Number</th>
+              <th scope="col">options</th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach ($products as $item)
-                <tr>
-                    <th scope="row">1</th>
-                    <td>{{ $item->firstName }}</td>
-                    <td>{{ $item->lastName }}</td>
-                    <td>{{ $item->phoneNumber }}</td>
-                    <td>{{ $item->secondPhoneNumber }}</td>
-                    <td>{{ $item->adress }}</td>
-                    <td>{{ $item->city }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>
-                        <form action="{{ url("deleteOrder/$item->id") }}">
-                            <button class="btn  btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-
-        </tbody>
+          </thead>
+          <tbody>
+              @foreach ($orderItems as $item )
+            <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+              <td><img src="{{ asset($item->product->image->where('color_id', $item->product_variant->color_id)->first()->filename) }}" alt="Placholder Image 2"
+                class="product-frame"></td>
+              <td>{{$item->product->name}}</td>
+              <td>{{$item->product_variant->size->name}}</td>
+              <td>{{$item->product_variant->color->name}}</td>
+              <td>{{$item->order->status}}</td>
+              <td>{{$item->order->adress}}</td>
+              <td>{{$item->order->user->phoneNumber}}</td>
+              <td>{{$item->order->user->secondPhoneNumber}}</td>
+              <td>
+                  <h1>
+                      {{-- <a class="btn btn-success" href="{{url("editOrder/$order->id")}}" >edit</a> --}}
+                  </h1>
+              </td>
+              <td>
+                  <h1>
+                      {{-- <a class="btn btn-primary" href="{{url("viewOrder/$order->id")}}" >view</a> --}}
+                  </h1>
+              </td>
+          </tr>
+          @endforeach
+      
+      
+          </tbody>
+      
     </table>
+
+    
 
 
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>

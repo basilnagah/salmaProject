@@ -4,6 +4,7 @@ $total = 0;
 if (Session::has('user')) {
     $total = AdminController::cartItem();
 }
+// dd($products);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,8 @@ if (Session::has('user')) {
 
 <body>
 
-    <nav class="navbar bg-dark bg-body-tertiary fixed-top">
+    @include('user.navbar');
+   {{-- <nav class="navbar bg-dark bg-body-tertiary fixed-top"> --}}
         <div class="container-fluid">
             <img  src="{{asset('images/logooo.jpg')}}" width="30px" height="24px" alt="">
             <a class="navbar-brand text-center text-light" href="#">Salma <span>store</span></a>
@@ -45,12 +47,20 @@ if (Session::has('user')) {
                 <div class="offcanvas-body"style=color>
                     <ul class="bg-dark navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
+                            <select class="form-select" onchange="location = this.value;">
+                                <option value="{{ url('userProducts') }}">All Categories</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ url('category/'.$category->id) }}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-light" aria-current="page" href="{{url('/')}}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('userProducts') }}">All Products</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('skirt') }}">skirt</a>
                         </li>
                         <li class="nav-item">
@@ -61,11 +71,11 @@ if (Session::has('user')) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('blouses') }}">blouses</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('sales') }}">sales</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('sets') }}">sets</a>
                         </li>
                         <li class="nav-item">
@@ -89,7 +99,7 @@ if (Session::has('user')) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('bags') }}">bags</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link cartword text-light" href="{{ url('cartList') }}">Cart<span class="cartNumber">(
                                     {{ $total }} )</span></a>
@@ -134,7 +144,8 @@ if (Session::has('user')) {
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> 
+
 
 
 
@@ -169,11 +180,15 @@ if (Session::has('user')) {
         </div>
     </div>
 
-    <div class="best-selling flex-wrap">
+    {{-- <div class="best-selling flex-wrap">
 
             <h2 class="m-auto brand text-center mt-5 w-100">Best Sellings</h2>
                 <hr class="mt-3 mb-5">
+                 {{-- @foreach ($bestSellinges as $bestSelling)
+                    <a class="cfff" href="{{url("productDetails/$bestSelling->id")}}"> <img src="{{ asset("storage/$bestSelling->image1") }}" alt="img" draggable="false"></a> --}}
 
+                
+{{--                     
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <div class="carousel">
@@ -186,14 +201,53 @@ if (Session::has('user')) {
                <a href="{{url('productDetails/7')}}"> <img src="{{ asset('images/1-24564.jpg') }}" alt="img" draggable="false"></a>
             </div>
             <i id="right" class="fa-solid fa-angle-right"></i>
+        </div> --}}
+        {{-- @endforeach --}}
+
+    {{-- </div> --}} 
+
+    <div class="featured2">
+        <div class="">
+            <div class="featured pt-5  " id="all_products">
+                <div class="container-fluid  mt-5 mb-5 pb-5">
+                    <h2 class="m-auto brand text-center ">Best Selling</h2>
+                    <hr class="mt-3 mb-5">
+                    <div class="card-group">
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        @foreach ($bestSellinges->slice(0,4) as $product)
+                            <div class="card ">
+                                <img src="{{asset($product->image()->first()->filename)}}" alt="">
+                                {{-- <img class="img2" src="{{asset($product->image()->first()->filename)}}" alt=""> --}}
+                                @if ($product->image()->count() > 1)
+                                    <!-- Display the second image if it exists -->
+                                    <img class="img2" src="{{ asset($product->image()->skip(1)->first()->filename) }}" alt="">
+                                @endif
+                                <p class="category">{{$product->category->name}}</p>
+                                <p class="product">{{ $product->name }}</p>
+                                @if ($product->salePrice != null)
+                                    <div class="btn btnsale  btn-success w-25 saleButton">SALE</div>
+                                    <span class="price">{{ $product->salePrice }}</span>
+                                @else
+                                    <span class="price">{{ $product->price }}</span>
+                                @endif
+                                <span class="quantity">{{ $product->quantity }}</span>
+                                {{-- @if ($product->quantity == 'in stock') --}}
+                                    <button class="btn byebtn"> <a class='buy'
+                                            href="{{ url("productDetails/$product->id") }}"> Buy Now </a></button>
+                                {{-- @else --}}
+                                    <button disabled class="btn"> <a class='buy'
+                                            href="{{ url("productDetails/$product->id") }}"> Buy Now </a></button>
+                                {{-- @endif --}}
+                            </div>
+                        @endforeach
+                    </div>
+                    <button class="btn btnsale btn-success mt-4 m-auto seeMore"> <a href="{{url('bestSelling')}}">See More</a></button>
+                </div>
+            </div>
         </div>
     </div>
-
-
-
-
-
-
+        
     <div class="featured2">
         <div class="">
             <div class="featured pt-5  " id="all_products">
@@ -205,9 +259,13 @@ if (Session::has('user')) {
                     <div class="d-flex flex-wrap justify-content-center">
                         @foreach ($products->slice(0,4) as $product)
                             <div class="card ">
-                                <img src="{{ asset("storage/$product->image1") }}" alt="">
-                                <img class="img2" src="{{ asset("storage/$product->image2") }}" alt="">
-                                <p class="category">{{ $product->category }}</p>
+                                <img src="{{asset($product->image()->first()->filename)}}" alt="">
+                                {{-- <img class="img2" src="{{asset($product->image()->first()->filename)}}" alt=""> --}}
+                                @if ($product->image()->count() > 1)
+                                    <!-- Display the second image if it exists -->
+                                    <img class="img2" src="{{ asset($product->image()->skip(1)->first()->filename) }}" alt="">
+                                @endif
+                                <p class="category">{{$product->category->name}}</p>
                                 <p class="product">{{ $product->name }}</p>
                                 @if ($product->salePrice != null)
                                     <div class="btn btnsale  btn-success w-25 saleButton">SALE</div>
@@ -216,13 +274,13 @@ if (Session::has('user')) {
                                     <span class="price">{{ $product->price }}</span>
                                 @endif
                                 <span class="quantity">{{ $product->quantity }}</span>
-                                @if ($product->quantity == 'in stock')
+                                {{-- @if ($product->quantity == 'in stock') --}}
                                     <button class="btn byebtn"> <a class='buy'
                                             href="{{ url("productDetails/$product->id") }}"> Buy Now </a></button>
-                                @else
+                                {{-- @else --}}
                                     <button disabled class="btn"> <a class='buy'
                                             href="{{ url("productDetails/$product->id") }}"> Buy Now </a></button>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                         @endforeach
                     </div>
@@ -242,8 +300,11 @@ if (Session::has('user')) {
                     <div class="d-flex flex-wrap justify-content-center">
                         @foreach ($result as $resulto)
                             <div class="card ">
-                                <img src="{{ asset("storage/$resulto->image1") }}" alt="">
-                                <img class="img2" src="{{ asset("storage/$resulto->image2") }}" alt="">
+                                <img src="{{ asset($resulto->image()->first()->filename) }}" alt="">
+                                @if ($product->image()->count() > 1)
+                                    <!-- Display the second image if it exists -->
+                                    <img class="img2" src="{{ asset($product->image()->skip(1)->first()->filename) }}" alt="">
+                                @endif                                
                                 <p class="category">{{ $resulto->category }}</p>
                                 <p class="product">{{ $resulto->name }}</p>
                                 @if ($resulto->salePrice != null)
@@ -274,6 +335,11 @@ if (Session::has('user')) {
 @include('user.footer')
     <script src="{{ asset('user/js/js.js') }}"></script>
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    
+  
 </body>
 
 </html>

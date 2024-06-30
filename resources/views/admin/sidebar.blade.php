@@ -56,62 +56,170 @@
       <li class="nav-item nav-category">
         <span class="nav-link">Navigation</span>
       </li>
-
-
-
-
-
-
+ 
       <li class="nav-item menu-items">
-        <a class="nav-link" href="{{url('products')}}">
+        <a class="nav-link" href="{{route('products.all')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
-          <span class="menu-title">All product</span>
+          <span class="menu-title">Products</span>
         </a>
       </li>
 
-
-      <li class="nav-item menu-items">
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('create')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
           <span class="menu-title">Create product</span>
         </a>
+      </li> --}}
+
+      {{-- category --}}
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('category.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Categories</span>
+        </a>
       </li>
+
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('category.create')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Create Category</span>
+        </a>
+      </li> --}}
+
+      {{-- colores --}}
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('color.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Colors</span>
+        </a>
+      </li>
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('color.create')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Creat Color</span>
+        </a>
+      </li> --}}
+
+      {{-- sizes --}}
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('size.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Sizes</span>
+        </a>
+      </li>
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('size.create')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Creat Sizes</span>
+        </a>
+      </li> --}}
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('city.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">cities</span>
+        </a>
+      </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{url('/shipping')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Shipping</span>
+        </a>
+      </li>
+      
       <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('adminOrders')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
-          <span class="menu-title">All Orders</span>
+          <span class="menu-title">Orders</span>
         </a>
       </li>
-      <li class="nav-item menu-items">
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('city.create')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Creat city</span>
+        </a>
+      </li> --}}
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('region.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Region</span>
+        </a>
+      </li> --}}
+
+      {{-- <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('region.create')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">Creat Regions</span>
+        </a>
+      </li> --}}
+  
+ 
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('pendingOrder')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
           <span class="menu-title">Pending Orders</span>
         </a>
-      </li>
-      <li class="nav-item menu-items">
+      </li> --}}
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('deliveredOrder')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
           <span class="menu-title">delivered Orders</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item menu-items">
+        <a class="nav-link" href="{{route('appSettings.index')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+          </span>
+          <span class="menu-title">App Settings</span>
+        </a>
+      </li>
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('curnncy')}}">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
           <span class="menu-title">curnncy</span>
         </a>
-      </li>
+      </li> --}}
+
 
 
     </ul>

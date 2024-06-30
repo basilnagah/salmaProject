@@ -14,132 +14,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-
-    function home(){
-        $products=DB::table('products')
-        ->where('id', '>', '9')
-        ->get();
-        $result = DB::table('products')
-        ->where('sale', 'sale')->get();
-        // return $result;
-        return view('user.home',compact('products'),compact('result'));
-    }
-
-    //admin page
-    function allProducts(Request $request)
-    {
-        $products = product::all();
-        $request->session()->forget('currencies');
-        return view('admin.all', compact('products'));
-    }
-    function create()
-    {
-        return view('admin.create');
-    }
-    function store(Request $request)
-    {
-
-        $data = $request->validate([
-            'name' => 'required',
-            'desc' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'string',
-            'salePrice' => '',
-            'sale' => '',
-            'image1' => 'required|image|mimes:jpg,png,jpeg',
-            'image2' => 'required|image|mimes:jpg,png,jpeg',
-            'image3' => 'image|mimes:jpg,png,jpeg',
-            'image4' => 'image|mimes:jpg,png,jpeg',
-            'image5' => 'image|mimes:jpg,png,jpeg',
-            'category' => 'required',
-        ]);
-        if ($request->has('image1')) {
-            $data['image1'] = Storage::putFile('products', $data['image1']);
-        }
-        if ($request->has('image2')) {
-            $data['image2'] = Storage::putFile('products', $data['image2']);
-        }
-        if ($request->has('image3')) {
-            $data['image3'] = Storage::putFile('products', $data['image3']);
-        }
-        if ($request->has('image4')) {
-            $data['image4'] = Storage::putFile('products', $data['image4']);
-        }
-        if ($request->has('image5')) {
-            $data['image5'] = Storage::putFile('products', $data['image5']);
-        }
-        product::create($data);
-        return redirect(url('create'))->with('success', 'data inserted ssuccessfully');
-    }
-    function delete($id)
-    {
-        $product = product::findOrFail($id);
-        if ($product->image1) {
-            storage::delete($product->image1);
-        }
-        if ($product->image2) {
-            storage::delete($product->image2);
-        }
-        if ($product->image3) {
-            storage::delete($product->image3);
-        }
-        if ($product->image4) {
-            storage::delete($product->image4);
-        }
-        if ($product->image5) {
-            storage::delete($product->image5);
-        }
-
-        $product->delete();
-        return redirect(url('products'))->with('success', 'data deleted ssuccessfully');
-    }
-    function edit($id)
-    {
-        $product = product::findOrFail($id);
-
-        return view('admin.edit', compact('product'));
-    }
-    function update(Request $request, $id)
-    {
-        $data = $request->validate([
-            'name' => 'string',
-            'desc' => 'string',
-            'price' => 'numeric',
-            'quantity' => 'string',
-            'salePrice' => '',
-            'sale' => '',
-            'image1' => 'image|mimes:jpg,png,jpeg',
-            'image2' => 'image|mimes:jpg,png,jpeg',
-            'image3' => 'image|mimes:jpg,png,jpeg',
-            'image4' => 'image|mimes:jpg,png,jpeg',
-            'image5' => 'image|mimes:jpg,png,jpeg',
-            'category' => 'string',
-        ]);
-        $product = product::findOrFail($id);
-        if ($request->has('image1')) {
-            Storage::delete($product->image1);
-            $data['image1'] = Storage::putFile('products', $data['image1']);
-        }
-        if ($request->has('image2')) {
-            Storage::delete($product->image2);
-            $data['image2'] = Storage::putFile('products', $data['image2']);
-        }
-        if ($request->has('image3')) {
-            Storage::delete($product->image3);
-            $data['image3'] = Storage::putFile('products', $data['image3']);
-        }
-        if ($request->has('image4')) {
-            Storage::delete($product->image4);
-            $data['image4'] = Storage::putFile('products', $data['image4']);
-        }
-        if ($request->has('image5')) {
-            Storage::delete($product->image5);
-            $data['image5'] = Storage::putFile('products', $data['image5']);
-        }
-        $product->update($data);
-
-        return redirect(url('products'))->with('success', 'data updated ssuccessfully');
-    }
     function curnncy()
     {
         $currncy = currncy::all();
@@ -163,22 +37,14 @@ class AdminController extends Controller
         return redirect(url('curnncy'))->with('success', 'data updated ssuccessfully');
     }
 
-
-
-
-    //user page
-    function userAllProducts()
+    function categoryFilter($id)
     {
-        $products = product::all();
+        $products = product::where('category_id',$id)->get();
 
         return view('user.allProducts',compact('products'));
     }
-    function productDetail($id)
-    {
-        $product = product::findOrFail($id);
-        $allProducts = product::all();
-        return view('user.productDetail', compact('product'), compact('allProducts'));
-    }
+    
+ 
     function search(Request $request)
     {
         $key=$request->key;
@@ -186,85 +52,7 @@ class AdminController extends Controller
         // return $products;
         return view('user.allProducts', compact('products'));
     }
-
-
-
-
-
-    //categories
-    function skirt()
-    {
-        $products = DB::table('products')->where('category', 'sets')->get();
-        return view('user.skirt')->with('products', $products);
-    }
-    function dress()
-    {
-        $products = DB::table('products')->where('category', 'dress')->get();
-        return view('user.dress')->with('products', $products);
-    }
-    function swimmingWear()
-    {
-        $products = DB::table('products')->where('category', 'swimming wear')->get();
-        return view('user.swimminWear')->with('products', $products);
-    }
-    function blouses()
-    {
-        $products = DB::table('products')->where('category', 'sets')->get();
-        return view('user.blouse')->with('products', $products);
-    }
-    function sets()
-    {
-        $products = DB::table('products')->where('category', 'sets')->get();
-        return view('user.sets')->with('products', $products);
-    }
-    function sales()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('sale', 'sale')->get();
-        return view('user.sales')->with('products', $products);
-    }
-    function cardigan()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'cardigan')->get();
-        return view('user.cardigan')->with('products', $products);
-    }
-    function abaya()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'abaya')->get();
-        return view('user.abaya')->with('products', $products);
-    }
-    function basic()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'basic')->get();
-        return view('user.basic')->with('products', $products);
-    }
-    function kimono()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'kimono')->get();
-        return view('user.kimono')->with('products', $products);
-    }
-    function scarfs()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'scarfs')->get();
-        return view('user.scarfs')->with('products', $products);
-    }
-    function bags()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'bags')->get();
-        return view('user.bags')->with('products', $products);
-    }
-    function tunic()
-    {
-        // $products = product::all();
-        $products = DB::table('products')->where('category', 'tunic')->get();
-        return view('user.tunic')->with('products', $products);
-    }
+   
     function orders(Request $request)
     {
         $userId = $request->session()->get('user')['id'];
@@ -293,80 +81,15 @@ class AdminController extends Controller
         return view('user.shaan');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //cart page
-    function addToCart(Request $request)
-    {
-
-        if ($request->salePrice) {
-            if ($request->session()->has('user')) {
-                $cart = new Cart;
-                $cart->user_id = $request->session()->get('user')['id'];
-                $cart->product_id = $request->product_id;
-                $cart->size = $request->size;
-                $cart->quantity = $request->quantity;
-                $cart->price = $request->salePrice;
-                $cart->category = $request->category;
-                $cart->image1 = $request->image1;
-                $cart->name = $request->name;
-                $cart->description = $request->desc;
-                $cart->save();
-
-                $products = product::all();
-                Session::flash('addedToCart', 'your product is added to cart ');
-                return view('user.allProducts', compact('products'));
-            } else {
-                $request->session()->put('message', 'plesae login so you can add product to your cart');
-                return view('Auth.login');
-            }
-        } else {
-
-
-            if ($request->session()->has('user')) {
-                $cart = new Cart;
-                $cart->user_id = $request->session()->get('user')['id'];
-                $cart->product_id = $request->product_id;
-                $cart->size = $request->size;
-                $cart->quantity = $request->quantity;
-                $cart->price = $request->price;
-                $cart->category = $request->category;
-                $cart->image1 = $request->image1;
-                $cart->name = $request->name;
-                $cart->description = $request->desc;
-                $cart->save();
-
-                $products = product::all();
-                Session::flash('addedToCart', 'your product is added to cart ');
-                return view('user.allProducts', compact('products'));
-            } else {
-                $request->session()->put('message', 'plesae login so you can add product to your cart');
-                return view('Auth.login');
-            }
-        }
-    }
+ 
     static function cartItem()
     {
         $userId = Session::get('user')['id'];
         return Cart::where('user_id', $userId)->count();
     }
+    
     function cartList()
     {
-
         if (Session::has('user')) {
 
             $userId = Session::get('user')['id'];
@@ -383,23 +106,6 @@ class AdminController extends Controller
             return view('user.allProducts')->with('products', $products)->with('time', $time);
         }
     }
-    function removeCart($id)
-    {
-        Cart::destroy($id);
-
-        $userId = Session::get('user')['id'];
-        $products = DB::table('cart')->where('cart.user_id', $userId)->get();
-        $result = DB::table('cart')
-            ->where('user_id', 2)
-            ->select(DB::raw('SUM(price * quantity)  as Result'))
-            ->first();
-        return view('user.cartList')->with('products', $products)->with('result', $result);
-    }
-
-
-
-
-
 
     //chechkout
     function chechkOut()
@@ -465,36 +171,7 @@ class AdminController extends Controller
 
 
 
-
-
-
-    //admin order
-    function adminOrders()
-    {
-        $orders = Order::all();
-        return view('admin.order', compact('orders'));
-    }
-    function editOrder($id)
-    {
-        $orders = Order::findOrFail($id);
-
-        return view('admin.orderEdit', compact('orders'));
-    }
-    function updateOrder(Request $request, $id)
-    {
-        $data = $request->validate([
-            'status' => 'string',
-        ]);
-        $orders = Order::findOrFail($id);
-        $orders->update($data);
-        return redirect('adminOrders')->with('success', 'data updated succfully');
-    }
-    function viewOrder($id)
-    {
-        $orderId = $id;
-        $orderItems = DB::table('order_items')->where('order_id', $orderId)->get();
-        return view('admin.veiwOrder', compact('orderItems'));
-    }
+   
     function pendingOrder()
     {
         $orders = DB::table('orders')->where('status', 'pending')->get();

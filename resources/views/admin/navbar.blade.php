@@ -15,8 +15,9 @@
       </ul>
       <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item dropdown d-none d-lg-block">
-          <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
+          {{-- <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{route('products.create')}}">+ Create New Product</a> --}}
+          <a class="nav-link btn btn-success create-new-button" href="{{route('products.create')}}">+ Create New Product</a>
+          {{-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
             <h6 class="p-3 mb-0">Projects</h6>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item preview-item">
@@ -53,9 +54,9 @@
             </a>
             <div class="dropdown-divider"></div>
             <p class="p-3 mb-0 text-center">See all projects</p>
-          </div>
+          </div> --}}
         </li>
-        <li class="nav-item nav-settings d-none d-lg-block">
+        {{-- <li class="nav-item nav-settings d-none d-lg-block">
           <a class="nav-link" href="#">
             <i class="mdi mdi-view-grid"></i>
           </a>
@@ -147,7 +148,7 @@
             <div class="dropdown-divider"></div>
             <p class="p-3 mb-0 text-center">See all notifications</p>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
             <div class="navbar-profile">

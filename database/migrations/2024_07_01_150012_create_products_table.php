@@ -15,17 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('desc');
-            $table->string('category');
             $table->decimal('price');
             $table->decimal('salePrice')->nullable();
             $table->decimal('sale')->nullable();
-            $table->string('quantity');
-            $table->string('image1',255)->nullable();
-            $table->string('image2',255)->nullable();
-            $table->string('image3',255)->nullable();
-            $table->string('image4',255)->nullable();
-            $table->string('image5',255)->nullable();
+            $table->boolean('best_selling')->default('0');
+            // $table->string('quantity');
+            // $table->boolean('best_selling')->default(0);
+            // $table->string('image1',255)->nullable();
+            // $table->string('image2',255)->nullable();
+            // $table->string('image3',255)->nullable();
+            // $table->string('image4',255)->nullable();
+            // $table->string('image5',255)->nullable();
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

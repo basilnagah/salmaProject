@@ -15,7 +15,6 @@
         <th scope="col">name</th>
         <th scope="col">Phone number</th>
         <th scope="col">Phone number 2</th>
-        <th scope="col">adress</th>
         <th scope="col">city</th>
         <th scope="col">status</th>
         <th scope="col">options</th>
@@ -25,11 +24,10 @@
         @foreach ($orders as $order )
       <tr>
           <th scope="row">{{$loop->iteration}}</th>
-        <td>{{$order->firstName}} {{$order->lastName}}</td>
-        <td>{{$order->phoneNumber}}</td>
-        <td>{{$order->secondPhoneNumber}}</td>
-        <td>{{$order->adress}}</td>
-        <td>{{$order->city}}</td>
+        <td>{{$order->user->name}}</td>
+        <td>{{$order->user->phoneNumber}}</td>
+        <td>{{$order->user->secondPhoneNumber}}</td>
+        <td>{{$order->shipping->city->name}}</td>
         <td>{{$order->status}}</td>
         <td>
             <h1>

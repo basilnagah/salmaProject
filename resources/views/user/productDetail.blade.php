@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Models\color;
+
 $total=0;
 if(Session::has('user')){
 
@@ -22,146 +24,75 @@ if(Session::has('user')){
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('user/js/product.js') }}"></script>
     <title>salma store</title>
+
+    <style>
+        .size-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .color-input {
+            width: 100px; /* Adjust the width according to your preference */
+            margin-bottom: 10px; /* Add space between each input */
+            /* You can add more styling as needed */
+        }
+        .color-button{
+            /* border: none;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 50%; */
+            border: 2px solid black; /* Set border to black */
+            color: white;
+            padding: 10px; /* Adjust padding to make the button smaller */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px; /* Adjust font size to make the button text smaller */
+            margin: 4px 2px;
+            border-radius: 50%;
+            width: 40px; /* Set button width */
+            height: 40px; /* Set button height */
+        }
+        .color-buttons-container {
+            display: flex; /* Use flexbox to arrange buttons horizontally */
+        }
+    </style>
 </head>
+@include('user.navbar')
 
 <body>
+
+   @include('admin.errors')
+
+
     <div class="container buying">
-        <nav class="navbar bg-dark bg-body-tertiary fixed-top">
-            <div class="container-fluid">
-                <img  src="{{asset('images/logooo.jpg')}}" width="30px" height="24px" alt="">
-                <a class="navbar-brand text-center text-light" href="#">Salma <span>store</span></a>
-                {{-- <a class="navbar-brand text-center text-light" href="#"> Store</a> --}}
-                {{-- <img class="navbar-brand logo" src=""  alt=""> --}}
-                <button class="navbar-toggler text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon text-light"></span>
-                </button>
-                <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header ">
-                        <h5 class="offcanvas-title text-light" id="offcanvasNavbarLabel">Salma Store</h5>
-                        <button type="button" class="btn-close text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body"style=color>
-                        <ul class="bg-dark navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="{{url('/')}}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('userProducts') }}">All Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('skirt') }}">skirt</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('dress') }}">dress</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('swimmingWear') }}">swimming wear</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('blouses') }}">blouses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('sales') }}">sales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('sets') }}">sets</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('cardigan') }}">cardigan</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('abaya') }}">abaya</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('orders') }}">orders</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('basic') }}">basic</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('kimono') }}">kimono</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('tunic') }}">tunic</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('scarfs') }}">scarfs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ url('bags') }}">bags</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link cartword text-light" href="{{ url('cartList') }}">Cart<span class="cartNumber">(
-                                        {{ $total }} )</span></a>
-
-                            </li>
-
-
-                            @auth
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ url('logout') }}">LogOut</a>
-                                </li>
-                            @endauth
-                            @guest
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ url('login') }}">Register</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ url('login') }}">Login</a>
-                                </li>
-                            @endguest
-                            <li class="nav-item">
-                                <form class="d-flex selectC" action="{{url("convertCurrnecyDet/$product->id")}}">
-                                    <select class="form-select" name="currnecy" id="currnecy">
-                                        <option value="EGP"><a href="{{url('convertCurrnecy')}}">EGP</a></option>
-                                        <option value="USD"><a href="{{url('convertCurrnecy')}}">USD</a></option>
-                                        <option value="SAR"><a href="{{url('convertCurrnecy')}}">SAR</a></option>
-                                      </select>
-                                      <button class="btn bg-dark text-light">convert</button>
-                                </form>
-                            </li>
-
-                        </ul>
-                        <form class="d-flex mt-3" role="search" action="{{url('search')}}">
-                            @csrf
-                            <input class="form-control me-2" type="search" name="key" placeholder="Search" aria-label="Search">
-                            <button class="search  btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+        
         <div class="row">
             <div class="product_img col-md-5 text-center">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ asset("storage/$product->image1") }}" class="d-block w-100" alt="...">
+                        @foreach ($productImages as $productImage)
+                            
+                            <div class="carousel-item active">
+                                <img src="{{ asset($productImage->filename) }}" class="d-block w-100" alt="...">
+                            </div>
+                         
+                            @endforeach
                         </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset("storage/$product->image2") }}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset("storage/$product->image3") }}" class="d-block w-100" alt="...">
-                        </div>
-                        @if ($product->image4)
-                        <div class="carousel-item">
-                            <img src="{{ asset("storage/$product->image4") }}" class="d-block w-100" alt="...">
-                        </div>
-                        @endif
-                        @if ($product->image5)
-                        <div class="carousel-item">
-                            <img src="{{ asset("storage/$product->image5") }}" class="d-block w-100" alt="...">
-                        </div>
-                        @endif
 
-                    </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -176,51 +107,66 @@ if(Session::has('user')){
 
             </div>
             <div class="product_info col-md-6 ms-auto">
+                {{-- {{$product->productVariants->}} --}}
                 <br>
-                <p class="product_type">{{ $product->category }}</p>
+                <p class="product_type">{{ $product->category->name }}</p>
                 <h2 class="product_name">{{ $product->name }}</h2>
                 <br>
                 @if ($product->salePrice !=null)
                 <span style="text-decoration: line-through" class="price1"> {{ $product->price }}</span><span class="currency"> L.E </span>
-                <span class="price1 ms-4"> {{ $product->salePrice }}</span><span class="currency"> L.E </span>
+                <span class="price1 ms-4"> {{ $product->salePrice }} </span><span class="currency"> L.E </span>
                 @else
                 <span class="price1"> {{ $product->price }}</span><span class="currency"> L.E </span>
                 @endif
 
-                <p class="mt-3">category:{{ $product->category }}</p>
+                <p class="mt-3">category:{{ $product->category->name }}</p>
 
                 <p class="product_desc mt-3">{{ $product->desc }}</p>
+
                 <div class=" m-auto">
-                    <form class="m-auto counter" action="{{url("addToCart/$product->id")}}" method="post">
-                            @csrf
-                            <select class="" name="size" id="size">
-                                <option value="medium">large</option>
-                                <option value="large">XL</option>
-                                <option value="Xlarge ">2XL</option>
-                                <option value="Xlarge ">3XL</option>
-                            </select>
-
-                            <span class="down text-dark" onClick='decreaseCount(event, this)'>-</span>
-                            <input class="count bg-dark" name="quantity" type="text" value="1">
-                            <span class="up text-dark" onClick='increaseCount(event, this)'>+</span>
-
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="hidden" name="price" value="{{$product->price}}">
-                            <input type="hidden" name="salePrice" value="{{$product->salePrice}}">
-                            <input type="hidden" name="category" value="{{$product->category}}">
-                            <input type="hidden" name="image1" value="{{$product->image1}}">
-                            <input type="hidden" name="name" value="{{$product->name}}">
-                            <input type="hidden" name="desc" value="{{$product->desc}}">
-                            <button class="button">
-                                <span>add to cart</span>
-                                <div class="cart">
-                                    <svg viewBox="0 0 36 26">
-                                        <polyline points="1 2.5 6 2.5 10 18.5 25.5 7.5 7.5 7.5"></polyline>
-                                        <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
-                                    </svg>
-                                </div>
-                            </button>
+                   
+                    <form class="m-auto counter" action="{{ route('cart.store') }}" method="post">
+                        @csrf
+                        <select name="productVariantId" id="size">
+                            @foreach ($defaultProductVariants as $variant)
+                                <option value="{{ $variant->id }}">{{ $variant->size->name }}</option>
+                            @endforeach
+                        </select>
+                        <input type="hidden" name="productId" value="{{ $product->id }}">
+                        {{-- Other hidden fields if needed --}}
+                        <span class="down text-dark" onClick='decreaseCount(event, this)'>-</span>
+                        <input class="count bg-dark" name="quantity" type="text" value="1">
+                        <span class="up text-dark" onClick='increaseCount(event, this)'>+</span>
+                        <button class="button">
+                            <span>add to cart</span>
+                            <div class="cart">
+                                <svg viewBox="0 0 36 26">
+                                    <polyline points="1 2.5 6 2.5 10 18.5 25.5 7.5 7.5 7.5"></polyline>
+                                    <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                                </svg>
+                            </div>
+                        </button>
                     </form>
+                    
+         
+                    <div class="color-buttons-container">
+
+                        @foreach ($availableColors as $colorId)
+                        <form action="{{ route('productDetail', ['id' => $product->id]) }}" method="get">
+                        @php
+                            $color = Color::where('id', $colorId)->first()                           
+                        @endphp
+                                <input type="hidden" name="color_id" value="{{ $colorId }}">
+                                <button type="submit" class="color-button" style="background-color:{{$color->color_code}}"></button>
+                            </form>
+                        @endforeach
+                    </div>
+                    {{-- <div id="sizes-container">
+                        @foreach ($defaultProductVariants as $variant)
+                            <button> {{$variant->size->name }}</button>
+                            <div>{{ $variant->size->name }}</div>
+                        @endforeach --}}
+                    </div>
                 </div>
 
 
@@ -235,13 +181,22 @@ if(Session::has('user')){
 
         <hr class="mt-5 mb-1">
 
+        @if (isset($relatedProducts))
+            
+       
+
         <h1 class="mb-5 text-center">RELATED PRODUCTS</h1>
         <div class="d-flex flex-wrap justify-content-center mb-4">
-            @foreach ($allProducts->slice(0, 3) as $product)
+            @foreach ($relatedProducts->slice(0, 3) as $product)
                 <div class="card">
-                    <img src="{{ asset("storage/$product->image1") }}" alt="">
-                    <img class="img2" src="{{ asset("storage/$product->image2") }}" alt="">
-                    <p class="category">{{ $product->category }}</p>
+                    {{-- <img src="{{ asset("storage/$product->image1") }}" alt="">
+                    <img class="img2" src="{{ asset("storage/$product->image2") }}" alt=""> --}}
+                    <img src="{{asset($product->image()->first()->filename)}}" alt="">
+                    {{-- <img class="img2" src="{{asset($product->image()->first()->filename)}}" alt=""> --}}
+                    @if ($product->image()->count() > 1)
+                        <img class="img2" src="{{ asset($product->image()->skip(1)->first()->filename) }}" alt="">
+                    @endif
+                    <p class="category">{{ $product->category->name }}</p>
                     <p class="product">{{ $product->name }}</p>
                     <span class="price">{{ $product->price }}</span><span
                         class="quantity">{{ $product->quantity }}</span>
@@ -250,6 +205,7 @@ if(Session::has('user')){
                 </div>
             @endforeach
         </div>
+        @endif
     </div>
     <div class="footer">
         <footer class="site-footer">
@@ -284,4 +240,22 @@ if(Session::has('user')){
         </footer>
     </div>
 
+
+    <script>
+        function selectColor(colorId) {
+            // Make AJAX request to reload sizes for selected color
+            // Example: You can use jQuery AJAX or fetch API to make a request to the backend
+            fetch(`/productDetail/{{ $product->id }}?color_id=${colorId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update sizes container with new sizes
+                    const sizesContainer = document.getElementById('sizes-container');
+                    sizesContainer.innerHTML = ''; // Clear previous sizes
+                    data.productVariants.forEach(variant => {
+                        sizesContainer.innerHTML += `<div>${variant.size.name}</div>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>

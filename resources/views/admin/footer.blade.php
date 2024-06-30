@@ -28,9 +28,33 @@
 <script src="{{asset('admin/assets')}}/js/misc.js"></script>
 <script src="{{asset('admin/assets')}}/js/settings.js"></script>
 <script src="{{asset('admin/assets')}}/js/todolist.js"></script>
+{{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="{{asset('admin/assets')}}/js/dashboard.js"></script>
 <!-- End custom js for this page -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+{{-- select 2 jQuary --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+{{-- dropZone js --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+
+<!-- JavaScript -->
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
+
+{{-- jquery --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js"></script>
+
+
 </body>
+@stack('scripts')
 </html>
